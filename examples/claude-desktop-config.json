@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "aws-docs": {
+      "command": "node",
+      "args": ["C:\\Users\\uguli\\ai-lab\\dist\\index.js"],
+      "env": {}
+    }
+  }
+}
