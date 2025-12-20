@@ -1,0 +1,87 @@
+{
+  "game": {
+    "name": "Threat Modeling Card Game",
+    "version": "1.0.0",
+    "description": "Exemplo de dados com esquema padronizado para cartas e baralhos (para uso em desenvolvimento)"
+  },
+  "decks": [
+    {
+      "deck_id": "AUTH",
+      "deck_name": "Autenticação e Identidade",
+      "description": "Riscos relacionados a credenciais, sessões e autenticação",
+      "cards": [
+        {
+          "card_id": "AUTH-01",
+          "title": "Credenciais fracas ou reutilizadas",
+          "deck": "Autenticação e Identidade",
+          "stride": "Spoofing",
+          "impact": "alto",
+          "likelihood": "alta",
+          "description": "Usuários utilizam senhas fracas ou reutilizadas em múltiplos sistemas, facilitando ataques de força bruta ou credential stuffing.",
+          "discussion_prompt": "Existem controles técnicos além de política de senha?",
+          "image": "./assets/cards/broken-lock.svg",
+          "suggested_mitigations": ["Exigir senha forte e checks de reciclagem", "Implementar MFA"],
+          "suggested_tests": ["Testes de força bruta em ambiente seguro", "Revisões de política de senhas"],
+          "tags": ["senha","MFA","credenciais"]
+        },
+        {
+          "card_id": "AUTH-02",
+          "title": "Ausência de autenticação multifator",
+          "deck": "Autenticação e Identidade",
+          "stride": "Spoofing",
+          "impact": "alto",
+          "likelihood": "média",
+          "description": "O sistema depende apenas de usuário e senha, aumentando o impacto em caso de vazamento de credenciais.",
+          "discussion_prompt": "Esse sistema protege dados sensíveis ou funções críticas?",
+          "image": "./assets/cards/single-factor.svg",
+          "suggested_mitigations": ["Adicionar MFA para operações críticas", "Permitir MFA adaptativo"],
+          "suggested_tests": ["Testes de fluxo de login com MFA"],
+          "tags": ["MFA","login"]
+        }
+      ]
+    },
+    {
+      "deck_id": "API",
+      "deck_name": "APIs e Integrações",
+      "description": "EndPoints, rate-limiting e validação de entrada",
+      "cards": [
+        {
+          "card_id": "API-01",
+          "title": "API sem autenticação",
+          "deck": "APIs e Integrações",
+          "stride": "Information Disclosure",
+          "impact": "alto",
+          "likelihood": "alta",
+          "description": "Endpoints críticos estão acessíveis sem qualquer mecanismo de autenticação.",
+          "discussion_prompt": "Esse endpoint deveria ser público?",
+          "image": "./assets/cards/open-api.svg",
+          "suggested_mitigations": ["Aplicar autenticação por token", "Revisar exposição de endpoints"],
+          "suggested_tests": ["Varredura de endpoints expostos"],
+          "tags": ["API","autenticação"]
+        }
+      ]
+    },
+    {
+      "deck_id": "DATA",
+      "deck_name": "Dados Sensíveis e Privacidade",
+      "description": "Armazenamento, logs e tratamento de dados sensíveis",
+      "cards": [
+        {
+          "card_id": "DATA-01",
+          "title": "Dados sensíveis sem criptografia",
+          "deck": "Dados Sensíveis e Privacidade",
+          "stride": "Information Disclosure",
+          "impact": "alto",
+          "likelihood": "média",
+          "description": "Informações sensíveis são armazenadas em texto claro.",
+          "discussion_prompt": "O que acontece se o banco for comprometido?",
+          "image": "./assets/cards/open-database.svg",
+          "suggested_mitigations": ["Criptografar em repouso e em trânsito", "Aplicar controles de acesso granular"],
+          "suggested_tests": ["Revisão de armazenamento de dados"],
+          "tags": ["cripto","dados"]
+        }
+      ]
+    }
+  ],
+  "backlog": []
+}
